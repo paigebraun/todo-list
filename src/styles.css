@@ -1,0 +1,255 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/src/fonts/Poppins-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/src/fonts/Inter-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'InterBold';
+    src: url('/src/fonts/Inter-Bold.ttf');
+}
+
+body {
+    margin: 0px;
+}
+
+#container {
+    display: flex;
+}
+
+.left {
+    width: 28vw;
+    background-color: #F8F8F8;
+    border-radius: 38px;
+    margin: 5vh;
+    height: 90vh;
+    min-width: 238px;
+}
+
+.todo-list,
+.lists {
+    display: flex;
+    flex-direction: column;
+    margin: 0px 3vw;
+    gap: 12px;
+}
+
+.todo-list > h3,
+.lists > .listContainer > h3 {
+    font-family: 'Poppins';
+    font-size: 2em;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.today,
+.allTasks {
+    background-color: #EAEAEA;
+    font-family: 'Inter';
+    border-radius: 11px;
+    padding: 10px 17px;
+}
+
+.todo-list > .selected {
+    background-color: #4290D9;
+    color: white;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.listBtns {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+}
+
+.listButton {
+    display: flex;
+    align-items: center;
+}
+
+.listButton > button {
+    border-radius: 30px;
+    font-family: 'Inter';
+    background-color: white;
+    padding:14px;
+    min-width: -webkit-fill-available;
+    filter: drop-shadow(.5px .5px 2px rgba(0, 0, 0, 0.05));
+}
+
+.taskCount {
+    position: relative;
+    left: -44px;
+    font-family: 'Inter';
+    background-color: #4290D9;
+    border-radius: 20px;
+    font-size: .7em;
+    padding: 6px 9px;
+}
+
+.addBtn {
+    display:flex;
+    gap: 4px;
+    margin-top: 20px;
+    font-size: .9em;
+}
+
+.addBtn > button {
+    font-family: 'Inter';
+    color: #BCBCBC;
+}
+
+.plus {
+    background-color: #EAEAEA;
+    border-radius: 20px;
+    padding: 1px 6px;
+}
+
+.listContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* RIGHT SIDE */
+
+.right {
+    margin-left: 10px;
+}
+
+.greeting {
+    font-family: 'Poppins';
+}
+
+.greetingTop,
+.greetingBottom {
+    display: flex;
+    column-gap: 6px;
+}
+
+.greetingBottom {
+    color:#BCBCBC;
+    flex-wrap: wrap;
+}
+
+.greetingBottom > h2 {
+    margin: 0px;
+}
+
+.greetingTop > h1 {
+    margin-top: 44px;
+    margin-bottom: -5px;
+}
+
+#dayOfWeek {
+    color: #4290D9;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #BCBCBC; 
+    align-items: baseline;
+    margin-top: 7vh;
+    width: 54vw;
+}
+
+.header > h2 {
+    font-family: 'Poppins';
+    margin: 0px;
+    font-size: 1.7em;
+}
+
+.header > p {
+    font-family: 'Inter';
+    color: #BCBCBC;
+    margin: 0px;
+}
+
+.taskArea {
+    display: flex;
+    flex-direction: column;
+}
+
+.taskCard {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.listName {
+    font-family: 'InterBold';
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+.task {
+    position: relative;
+    font-size: 1.4em;
+    padding-top: 2px;
+    padding-left: 41px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    font-family: 'Inter';
+}
+
+.task input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    border: 3px solid #4290D9;
+    position: absolute;
+    border-radius: 10px;
+    top:0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+}
+
+.strike:checked + span {
+    text-decoration: line-through;
+}
+
+.task input:checked ~ .checkmark {
+    background-color: #4290D9;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.task input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.task .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

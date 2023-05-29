@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+</head>
+<body>
+    <div id="container">
+        <div class="left">
+            <div class="todo-list">
+                <h3>To Do</h3>
+                <button type="button" class="today selected">Today</button>
+                <button type="button" class="allTasks">All Tasks</button>
+            </div>
+            <div class="lists">
+                <div class="listContainer">
+                    <h3>Lists</h3>
+                    <div class="addBtn">
+                        <button class="plus">+</button>
+                        <button>Add List</button>
+                    </div>
+                </div>
+                <div class="listBtns">
+                    <div class="listButton">
+                        <button type="button">Personal</button>
+                        <div class="taskCount">2</div>
+                    </div>
+                    <div class="listButton">
+                        <button type="button">Work</button>
+                        <div class="taskCount">2</div>
+                    </div>
+                    <div class="listButton">
+                        <button type="button">Grocery</button>
+                        <div class="taskCount">2</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="greeting">
+                <div class="greetingTop">
+                    <h1>Good</h1>
+                    <h1 id="timeOfDay">Morning,</h1>
+                </div>
+                <div class="greetingBottom">
+                    <h2>Here's a look at your</h2>
+                    <h2 id="dayOfWeek">Monday</h2>
+                </div>
+            </div>
+            <div class="header">
+                <h2>Today</h2>
+                <p>5/15/2023</p>
+            </div>
+            <div class="tasksArea">
+                <div class="taskCard">
+                    <h2 class="listName">Personal</h2>
+                    <label class="task">
+                        <input type="checkbox">
+                        <span>Schedule Dr. Appt</span>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="task">
+                        <input type="checkbox">
+                        <span>Get groceries</span>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="taskCard">
+                    <h2 class="listName">Work</h2>
+                    <label class="task">
+                        <input type="checkbox">
+                        <span>Send new design</span>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="task">
+                        <input type="checkbox" class="strike" checked="checked">
+                        <span>Check emails</span>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="task">
+                        <input type="checkbox">
+                        <span>Lunch with Emma</span>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="task">
+                        <input type="checkbox">
+                        <span>Research project</span>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
