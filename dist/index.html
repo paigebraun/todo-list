@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--===== Boxicons CSS =====-->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>To Do</title>
 </head>
 <body>
+    <div class="dim"></div>
     <div id="container">
         <div class="left">
             <div class="todo-list">
@@ -23,18 +26,6 @@
                     </div>
                 </div>
                 <div class="listBtns">
-                    <div class="listButton">
-                        <button type="button">Personal</button>
-                        <div class="taskCount">2</div>
-                    </div>
-                    <div class="listButton">
-                        <button type="button">Work</button>
-                        <div class="taskCount">2</div>
-                    </div>
-                    <div class="listButton">
-                        <button type="button">Grocery</button>
-                        <div class="taskCount">2</div>
-                    </div>
                 </div>
             </div>
 
@@ -52,46 +43,52 @@
             </div>
             <div class="header">
                 <h2>Today</h2>
-                <p>5/15/2023</p>
+                <p id="todaysDate">5/15/2023</p>
             </div>
             <div class="tasksArea">
-                <div class="taskCard">
-                    <h2 class="listName">Personal</h2>
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Schedule Dr. Appt</span>
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Get groceries</span>
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="taskCard">
-                    <h2 class="listName">Work</h2>
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Send new design</span>
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="task">
-                        <input type="checkbox" class="strike" checked="checked">
-                        <span>Check emails</span>
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Lunch with Emma</span>
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Research project</span>
-                        <span class="checkmark"></span>
-                    </label>
+            </div>
+        </div>
+        <div id="addTaskBtn">
+            <button class="plusTask">+</button>
+        </div>
+        <div id="newTask">
+            <h2>New Task</h2>
+            <input type="text" id="newTaskName">
+            <div class="listSelectContainer">
+                <label for"select-menu>List:</label>
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span class="sBtn-text">Personal</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+
+                    <ul class="options">
+                        <li class="option">
+                            <div class="dot"></div>
+                            <span class="option-text">Personal</span>
+                        </li>
+                        <li class="option">
+                            <div class="dot"></div>
+                            <span class="option-text">Work</span>
+                        </li>
+                        <li class="option">
+                            <div class="dot"></div>
+                            <span class="option-text">Grocery</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <div class="newTaskBottom">
+                <div class="dateSelectContainer">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate">
+                </div>
+                <div class="addCancel">
+                    <btn class="newTaskCancel">Cancel</btn>
+                    <btn class="newTaskAdd">Add</btn>
+                </div>                
+            </div>
+
         </div>
     </div>
     <script src="./main.js"></script>

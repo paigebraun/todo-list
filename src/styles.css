@@ -25,12 +25,14 @@ body {
     display: flex;
 }
 
+/* LEFT SIDE */
+
 .left {
     width: 28vw;
     background-color: #F8F8F8;
     border-radius: 38px;
-    margin: 5vh;
-    height: 90vh;
+    margin: 2vh;
+    height: 96vh;
     min-width: 238px;
 }
 
@@ -93,11 +95,12 @@ button {
 .taskCount {
     position: relative;
     left: -44px;
-    font-family: 'Inter';
+    font-family: 'Poppins';
     background-color: #4290D9;
     border-radius: 20px;
-    font-size: .7em;
-    padding: 6px 9px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: .9em;
+    padding: 4px 10px;
 }
 
 .addBtn {
@@ -115,7 +118,7 @@ button {
 .plus {
     background-color: #EAEAEA;
     border-radius: 20px;
-    padding: 1px 6px;
+    padding: 1px 6px 3px 6px;
 }
 
 .listContainer {
@@ -193,17 +196,18 @@ button {
 .listName {
     font-family: 'InterBold';
     font-size: 1.4em;
-    margin-bottom: 15px;
+    margin-bottom: 11px;
 }
 
 .task {
     position: relative;
-    font-size: 1.4em;
+    font-size: 1.1em;
     padding-top: 2px;
-    padding-left: 41px;
-    margin-bottom: 6px;
+    padding-left: 36px;
+    margin-bottom: 1px;
     cursor: pointer;
     font-family: 'Inter';
+    width: fit-content;
 }
 
 .task input {
@@ -215,13 +219,13 @@ button {
 }
 
 .checkmark {
-    border: 3px solid #4290D9;
+    border: 2px solid #4290D9;
     position: absolute;
-    border-radius: 10px;
+    border-radius: 5px;
     top:0;
     left: 0;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .strike:checked + span {
@@ -243,8 +247,8 @@ button {
 }
 
 .task .checkmark:after {
-    left: 9px;
-    top: 5px;
+    left: 6px;
+    top: 2px;
     width: 5px;
     height: 10px;
     border: solid white;
@@ -252,4 +256,183 @@ button {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+#addTaskBtn {
+    position:absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    box-shadow: 0 0 20px #e4e4e4;
+    display: flex;
+    justify-content: center;
+}
+
+.plusTask {
+    font-family: 'Poppins';
+    font-size: 2.5em;
+    color: #BCBCBC;
+}
+
+/* NEW TASK POPUP */
+
+#newTask {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    padding: 20px 28px;
+    border-radius: 20px;
+    width: 42vw;
+    max-width: 450px;
+    min-width: 395px;
+    right: 0;
+    left: 0;
+    top: 30vh;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 2;
+}
+
+#newTask > h2 {
+    font-family: 'Poppins';
+    margin-top: 0;
+}
+
+#newTaskName {
+    height: 17px;
+    border: 2px solid lightgrey;
+    border-radius: 5px;
+    font-family: 'Inter';
+    padding: 8px 12px;
+    font-size: inherit;
+}
+
+.dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 18px;
+    background-color: coral;
+}
+
+.listSelectContainer,
+.dateSelectContainer {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.listSelectContainer > label,
+.dateSelectContainer > label {
+    font-family: 'Inter';
+}
+
+input[type='date'] {
+    border-radius: 7px;
+    height: 17px;
+    border: 2px solid lightgrey;
+    padding: 8px 12px;
+    font-family: 'Inter';
+    font-size: inherit;
+}
+
+.select-menu{
+    width: 150px;
+}
+.select-menu .select-btn{
+    display: flex;
+    height: 17px;
+    background: #fff;
+    padding: 8px 12px;
+    font-family: 'Inter';
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 2px solid lightgrey;
+}
+.select-btn i{
+    font-size: 25px;
+    transition: 0.3s;
+}
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+.select-menu .options{
+    font-family: 'Inter';
+    position: absolute;
+    padding: 2px;
+    margin-top: 5px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    display: none;
+    width: inherit;
+}
+.select-menu.active .options{
+    display: block;
+}
+.options .option{
+    display: flex;
+    height: 12px;
+    cursor: pointer;
+    padding: 13px 16px;
+    border-radius: 8px;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+}
+
+.options .option:hover{
+    background: #F2F2F2;
+}
+.option i{
+    font-size: 25px;
+    margin-right: 12px;
+}
+.option .option-text{
+    font-size: 18px;
+    color: #333;
+}
+
+.newTaskBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.addCancel {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-top: 15px;
+    font-family: 'Inter';
+    cursor: pointer;
+}
+
+.newTaskAdd,
+.newTaskCancel {
+    padding: 6px 10px;
+    border-radius: 7px;
+    background-color: #F2F2F2;
+}
+
+.newTaskAdd:hover,
+.newTaskCancel:hover {
+    background-color: #EAEAEA;
+}
+
+.dim {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    z-index: 1;
+    opacity: 40%;
 }
