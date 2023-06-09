@@ -11,6 +11,7 @@ var weekday = today.getDay();
 //display todays info on homepage
 var todaysDate = document.getElementById('todaysDate');
 todaysDate.innerText = mm + '/' + dd + '/' + yyyy;
+let calendarDate = yyyy + '-' + mm + '-' + dd;
 
 var timeOfDay = document.getElementById('timeOfDay');
 if (hourOfDay < 12) {
@@ -43,23 +44,6 @@ function displayNewTask() {
 
 newTaskCancel.addEventListener('click', hideNewTask);
 
-//dropdown menu functionality
-const optionMenu = document.querySelector(".select-menu"),
-       selectBtn = optionMenu.querySelector(".select-btn"),
-       options = optionMenu.querySelectorAll(".option"),
-       sBtn_text = optionMenu.querySelector(".sBtn-text");
-
-selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));       
-
-options.forEach(option =>{
-    option.addEventListener("click", ()=>{
-        let selectedOption = option.querySelector(".option-text").innerText;
-        sBtn_text.innerText = selectedOption;
-
-        optionMenu.classList.remove("active");
-    });
-});
-
 //list object constructor
 class ListObj {
     constructor(title, color, tasks) {
@@ -82,7 +66,7 @@ function createList(title, color, tasks) {
     lists.push(newList);
 }
 
-
+//display lists
 for (let i = 0; i < lists.length; i++) {
     displayList(lists[i]);
 }
@@ -101,6 +85,50 @@ function displayList(listObject){
 
     listBtns.appendChild(listDiv);
 }
+
+//add list to dropdown menu option on new task popup
+const optionsList = document.querySelector('.options');
+function addListDropdown() {
+    while (optionsList.firstChild){
+        optionsList.removeChild(optionsList.firstChild);
+    }
+    for (let i = 0; i < lists.length; i++) {
+        const liOption = document.createElement('li');
+        liOption.className = 'option';
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.backgroundColor = lists[i].color;
+        const optionText = document.createElement('span');
+        optionText.className = 'option-text';
+        optionText.innerText = lists[i].title;
+        optionsList.appendChild(liOption);
+        liOption.appendChild(dot);
+        liOption.appendChild(optionText);
+    }
+}
+addListDropdown();
+
+//dropdown menu functionality
+const optionMenu = document.querySelector(".select-menu");
+const selectBtn = optionMenu.querySelector(".select-btn");
+let options = optionMenu.querySelectorAll(".option");
+const sBtn_text = optionMenu.querySelector(".sBtn-text");
+
+selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));       
+
+function dropDownHelper() {
+    let options = optionMenu.querySelectorAll(".option");
+    options.forEach(option =>{
+        option.addEventListener("click", ()=>{
+            let selectedOption = option.querySelector(".option-text").innerText;
+            sBtn_text.innerText = selectedOption;
+    
+            optionMenu.classList.remove("active");
+        });
+    });
+}
+
+dropDownHelper();
 
 //task object constructor
 class Task {
@@ -123,16 +151,18 @@ function hideNewTask() {
     dim.style.display = 'none';
 }
 
+const tasksArea = document.querySelector('.tasksArea');
+
 newTaskAdd.addEventListener('click', function() {
     createTask(newTaskName.value, sBtn_text.innerText, dueDate.value);
 });
 
-createTask('Schedule Dr. Appt', 'Personal', today);
-createTask('Get groceries', 'Personal', today);
-createTask('Send new design', 'Work', today);
-createTask('Check emails', 'Work', today);
-createTask('Lunch with Emma', 'Work', today);
-createTask('Research project', 'Work', today);
+createTask('Schedule Dr. Appt', 'Personal', calendarDate);
+createTask('Get groceries', 'Personal', calendarDate);
+createTask('Send new design', 'Work', calendarDate);
+createTask('Check emails', 'Work', calendarDate);
+createTask('Lunch with Emma', 'Work', calendarDate);
+createTask('Research project', 'Work', calendarDate);
 
 function createTask(taskName, list, dueDate) {
     let newTask = new Task(taskName, list, dueDate);
@@ -149,50 +179,59 @@ function createTask(taskName, list, dueDate) {
             }
         }
     }
+    //update display
+    displayHomeTaskArea();
     //clear inputs and hide new task
     hideNewTask();
 }
 
 
-// display tasks -- BREAK THIS OUT INTO SEPARATE FILES? IDK THIS ONLY NEEDS TO SHOW ONES DUE TODAY...
-const tasksArea = document.querySelector('.tasksArea');
+// display tasks on homepage (due today)
 function displayHomeTaskArea() {
+    //delete all current children
+    while (tasksArea.firstChild) {
+        tasksArea.removeChild(tasksArea.lastChild);
+    }
     for (let i = 0; i < lists.length; i++) {
         //make sure list isn't empty
+        console.log(lists);
         if (lists[i].tasks.length === 0) {
+            console.log(lists[i].tasks, 'skippin');
             i++
         }
         else {
             //find tasks with due date of today
             let dueToday = [];
             for (let j =0; j < lists[i].tasks.length; j++) {
-                if (lists[i].tasks[j].dueDate === today) {
+                if (lists[i].tasks[j].dueDate === calendarDate) {
                     dueToday.push(lists[i].tasks[j]);
                 }
             }
-            const taskCard = document.createElement('div');
-            taskCard.className = 'taskCard';
-            const listName = document.createElement('h2');
-            listName.className = 'listName';
-            listName.innerText = lists[i].title;
+            if (dueToday.length !== 0) {
+                const taskCard = document.createElement('div');
+                taskCard.className = 'taskCard';
+                const listName = document.createElement('h2');
+                listName.className = 'listName';
+                listName.innerText = lists[i].title;
 
-            taskCard.appendChild(listName);
-            tasksArea.appendChild(taskCard);
+                taskCard.appendChild(listName);
+                tasksArea.appendChild(taskCard);
 
-            for (let k = 0; k < dueToday.length; k++) {
-                const taskLabel = document.createElement('label');
-                taskLabel.className = 'task';
-                taskCard.appendChild(taskLabel);
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.className = 'strike';
-                taskLabel.appendChild(checkbox);
-                const taskSpan = document.createElement('span');
-                taskSpan.innerText = dueToday[k].taskName;
-                taskLabel.appendChild(taskSpan);
-                const checkmark = document.createElement('span');
-                checkmark.className = 'checkmark';
-                taskLabel.appendChild(checkmark);
+                for (let k = 0; k < dueToday.length; k++) {
+                    const taskLabel = document.createElement('label');
+                    taskLabel.className = 'task';
+                    taskCard.appendChild(taskLabel);
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.className = 'strike';
+                    taskLabel.appendChild(checkbox);
+                    const taskSpan = document.createElement('span');
+                    taskSpan.innerText = dueToday[k].taskName;
+                    taskLabel.appendChild(taskSpan);
+                    const checkmark = document.createElement('span');
+                    checkmark.className = 'checkmark';
+                    taskLabel.appendChild(checkmark);
+                }
             }
         }
     }
@@ -200,3 +239,43 @@ function displayHomeTaskArea() {
 }
 displayHomeTaskArea();
 
+//New List popup functionality
+
+//Add new list
+const addListBtn = document.getElementById('addBtn');
+const newListPopup = document.getElementById('newList');
+const newListCancel = document.querySelector('.newListCancel');
+const newListAdd = document.querySelector('.newListAdd');
+const newListName = document.getElementById('newListName');
+addListBtn.addEventListener('click', displayNewList);
+newListCancel.addEventListener('click', hideNewList);
+
+const colors = document.querySelectorAll('input[name=color]')
+function displayNewList() {
+    newListPopup.style.display = 'flex';
+    dim.style.display = 'block';
+}
+
+function hideNewList() {
+    newListName.value = '';
+    for (let i = 0; i < colors.length; i++) {
+        if (colors[i].checked) {
+            colors[i].checked = false;
+        }
+    }
+    colors[0].checked = true;
+    newListPopup.style.display = 'none';
+    dim.style.display = 'none';
+}
+
+const listOfColors = ['#71CD50', '#FB9535', '#F173BF', '#F6D14B', '#EF543F', '#67C7C1', '#9C69DE', '#505050'];
+
+newListAdd.addEventListener('click', function() {
+    let colorNum = document.querySelector('input[name="color"]:checked');
+    let colorSelected = listOfColors[Number(colorNum.value)];
+    createList(newListName.value, colorSelected, []);
+    hideNewList();
+    displayList(lists[lists.length - 1]);
+    addListDropdown();
+    dropDownHelper();
+})

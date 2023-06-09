@@ -20,7 +20,7 @@
             <div class="lists">
                 <div class="listContainer">
                     <h3>Lists</h3>
-                    <div class="addBtn">
+                    <div id="addBtn">
                         <button class="plus">+</button>
                         <button>Add List</button>
                     </div>
@@ -61,21 +61,7 @@
                         <span class="sBtn-text">Personal</span>
                         <i class="bx bx-chevron-down"></i>
                     </div>
-
-                    <ul class="options">
-                        <li class="option">
-                            <div class="dot"></div>
-                            <span class="option-text">Personal</span>
-                        </li>
-                        <li class="option">
-                            <div class="dot"></div>
-                            <span class="option-text">Work</span>
-                        </li>
-                        <li class="option">
-                            <div class="dot"></div>
-                            <span class="option-text">Grocery</span>
-                        </li>
-                    </ul>
+                    <ul class="options"></ul>
                 </div>
             </div>
             <div class="newTaskBottom">
@@ -89,6 +75,46 @@
                 </div>                
             </div>
 
+        </div>
+        <div id="newList">
+            <h2>New List</h2>
+            <div class="newListNameInput">
+                <label for="newListName">Name:</label>
+                <input type="text" id="newListName">
+            </div>
+            <div class="newListBottom">
+                <label class="colorLabel" for="colors">Color:</label>
+                <div id="colors">
+                    <input type="radio" name="color" id="green" value="0" checked="checked">
+                    <label for="green"><span class="green colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="color" id="orange" value="1">
+                    <label for="orange"><span class="orange colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="pink" value="2">
+                    <label for="pink"><span class="pink colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="yellow" value="3">
+                    <label for="yellow"><span class="yellow colorPick"><span class="colorSelected"></span></label> 
+                    <div></div>
+                    <input type="radio" name="color" id="red" value="4">
+                    <label for="red"><span class="red colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="teal" value="5">
+                    <label for="teal"><span class="teal colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="color" id="purple" value="6">
+                    <label for="purple"><span class="purple colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="black" value="7">
+                    <label for="black"><span class="black colorPick"><span class="colorSelected"></span></label> 
+    
+                </div>      
+                <div class="addCancel">
+                    <btn class="newListCancel">Cancel</btn>
+                    <btn class="newListAdd">Add</btn>
+                </div>   
+            </div>
         </div>
     </div>
     <script src="./main.js"></script>

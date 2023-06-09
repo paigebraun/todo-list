@@ -103,14 +103,14 @@ button {
     padding: 4px 10px;
 }
 
-.addBtn {
+#addBtn {
     display:flex;
     gap: 4px;
     margin-top: 20px;
     font-size: .9em;
 }
 
-.addBtn > button {
+#addBtn > button {
     font-family: 'Inter';
     color: #BCBCBC;
 }
@@ -278,7 +278,8 @@ button {
 
 /* NEW TASK POPUP */
 
-#newTask {
+#newTask,
+#newList {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -296,12 +297,14 @@ button {
     z-index: 2;
 }
 
-#newTask > h2 {
+#newTask > h2,
+#newList > h2 {
     font-family: 'Poppins';
     margin-top: 0;
 }
 
-#newTaskName {
+#newTaskName,
+#newListName {
     height: 17px;
     border: 2px solid lightgrey;
     border-radius: 5px;
@@ -314,7 +317,6 @@ button {
     width: 18px;
     height: 18px;
     border-radius: 18px;
-    background-color: coral;
 }
 
 .listSelectContainer,
@@ -414,14 +416,18 @@ input[type='date'] {
 }
 
 .newTaskAdd,
-.newTaskCancel {
+.newTaskCancel,
+.newListAdd,
+.newListCancel {
     padding: 6px 10px;
     border-radius: 7px;
     background-color: #F2F2F2;
 }
 
 .newTaskAdd:hover,
-.newTaskCancel:hover {
+.newTaskCancel:hover,
+.newListAdd:hover,
+.newListCancel:hover {
     background-color: #EAEAEA;
 }
 
@@ -435,4 +441,116 @@ input[type='date'] {
     background: black;
     z-index: 1;
     opacity: 40%;
+}
+
+/* New List Popup */
+
+.newListNameInput {
+    font-family: 'Inter';
+    font-size: 1.2em;
+    color: #BCBCBC;
+    margin-right: 8px;
+    display: flex;
+    gap: 17px;
+}
+
+.colorLabel {
+    font-family: 'Inter';
+    font-size: 1.2em;
+    color: #BCBCBC;
+}
+
+.newListBottom {
+    font-family: 'Inter';
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#newListName {
+    width: 100%;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.green {
+    background-color: #71CD50;
+}
+
+.orange {
+    background-color: #FB9535;
+}
+
+.pink {
+    background-color: #F173BF;
+}
+
+.yellow {
+    background-color: #F6D14B;
+}
+
+.red {
+    background-color: #EF543F;
+}
+
+.teal {
+    background-color: #67C7C1;
+}
+
+.purple {
+    background-color: #9C69DE;
+}
+
+.black {
+    background-color: #505050;
+}
+
+.green,
+.orange,
+.pink,
+.yellow,
+.red,
+.teal,
+.purple,
+.black {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+label span {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.colorSelected {
+    background-color: white;
+    filter: drop-shadow(1px 1px 1px grey);
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    top: 27%;
+    left: 27%;
+    position: relative;
+}
+
+#colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.colorSelected {
+    display: none;
+}
+
+
+input[type="radio"]:checked + label > span > .colorSelected {
+    display: block;
 }
