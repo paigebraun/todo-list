@@ -1,6 +1,7 @@
 import { lists, dim } from './globals';
 import { listBtns } from './newLists';
 import { displayHomeTaskArea } from '.';
+import { displayAllTasks } from './allTasks';
 
 //add new task
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -18,10 +19,11 @@ newTaskCancel.addEventListener('click', hideNewTask);
 
 //task object constructor
 class Task {
-    constructor(taskName, list, dueDate) {
+    constructor(taskName, list, dueDate, completed) {
         this.taskName = taskName;
         this.list = list;
         this.dueDate = dueDate;
+        this.completed = 'false';
     }
 }
 
@@ -37,7 +39,7 @@ function hideNewTask() {
     dim.style.display = 'none';
 }
 
-function createTask(taskName, list, dueDate) {
+function createTask(taskName, list, dueDate, completed) {
     let newTask = new Task(taskName, list, dueDate);
     //add new task to appropriate list
     for (let i = 0; i < lists.length; i++) {
@@ -52,8 +54,15 @@ function createTask(taskName, list, dueDate) {
             }
         }
     }
-    //update display
-    displayHomeTaskArea();
+
+    //update display - need to figure out what display we're on
+    const selected = document.querySelector('.selected');
+    if (selected.classList[0] === 'today') {
+        displayHomeTaskArea();
+    }
+    if (selected.classList[0] === 'allTasks') {
+        displayAllTasks();
+    }
     //clear inputs and hide new task
     hideNewTask();
 }

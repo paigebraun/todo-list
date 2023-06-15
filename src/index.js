@@ -1,27 +1,14 @@
 import './styles.css';
-import { dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists } from './globals';
+import { dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists} from './globals';
 import { createTask, sBtn_text } from './newTasks';
+import { displayAllTasks } from './allTasks';
 
 //display todays info on homepage
-let todaysDate = document.getElementById('todaysDate');
-todaysDate.innerText = mm + '/' + dd + '/' + yyyy;
-
-let timeOfDay = document.getElementById('timeOfDay');
-if (hourOfDay < 12) {
-    timeOfDay.innerText = 'Morning,';
-}
-else if ((hourOfDay >= 12) && (hourOfDay < 17)) {
-    timeOfDay.innerText = 'Afternoon,';
-}
-else {
-    timeOfDay.innerText = 'Evening,';
-}
-
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-let dayOfWeek = document.getElementById('dayOfWeek');
-dayOfWeek.innerText = days[weekday];
-
+const rightContainer = document.querySelector('.right');
+const allTasksBtn = document.querySelector('.allTasks');
+const todayBtn = document.querySelector('.today');
 
 const newTaskAdd = document.querySelector('.newTaskAdd');
 newTaskAdd.addEventListener('click', function() {
@@ -38,7 +25,59 @@ createTask('Research project', 'Work', calendarDate);
 
 // display tasks on homepage (due today)
 function displayHomeTaskArea() {
-    const tasksArea = document.querySelector('.tasksArea');
+    allTasksBtn.classList.remove('selected');
+    todayBtn.classList.add('selected');
+    //clear the right container
+    while (rightContainer.firstChild) {
+        rightContainer.removeChild(rightContainer.lastChild);
+    }
+    //build the header
+    const greeting = document.createElement('div');
+    greeting.className = 'greeting';
+    rightContainer.appendChild(greeting);
+    const greetingTop = document.createElement('div');
+    greetingTop.className = 'greetingTop';
+    greeting.appendChild(greetingTop);
+    const goodH1 = document.createElement('h1');
+    goodH1.innerText = 'Good';
+    greetingTop.appendChild(goodH1);
+    const timeOfDay = document.createElement('h1');
+    if (hourOfDay < 12) {
+        timeOfDay.innerText = 'Morning,';
+    }
+    else if ((hourOfDay >= 12) && (hourOfDay < 17)) {
+        timeOfDay.innerText = 'Afternoon,';
+    }
+    else {
+        timeOfDay.innerText = 'Evening,';
+    }
+    timeOfDay.id = 'timeOfDay';
+    greetingTop.appendChild(timeOfDay);
+    const greetingBottom = document.createElement('div');
+    greetingBottom.className = 'greetingBottom';
+    greeting.appendChild(greetingBottom);
+    const heresALook = document.createElement('h2');
+    heresALook.innerText = "Here's a look at your";
+    greetingBottom.appendChild(heresALook);
+    const dayOfWeek = document.createElement('h2');
+    dayOfWeek.innerText = days[weekday];
+    dayOfWeek.id = 'dayOfWeek';
+    greetingBottom.appendChild(dayOfWeek);
+    const header = document.createElement('div');
+    header.className = 'header';
+    rightContainer.appendChild(header);
+    const today = document.createElement('h2');
+    today.innerText = 'Today';
+    header.appendChild(today);
+    const todaysDate = document.createElement('p');
+    todaysDate.id = 'todaysDate';
+    todaysDate.innerText = mm + '/' + dd + '/' + yyyy;
+    header.appendChild(todaysDate);
+    const tasksArea = document.createElement('div');
+    tasksArea.className = 'tasksArea';
+    rightContainer.appendChild(tasksArea);
+    
+
     //delete all current children
     while (tasksArea.firstChild) {
         tasksArea.removeChild(tasksArea.lastChild);
@@ -54,6 +93,7 @@ function displayHomeTaskArea() {
                 }
             }
             if (dueToday.length !== 0) {
+                //add list names to display
                 const taskCard = document.createElement('div');
                 taskCard.className = 'taskCard';
                 const listName = document.createElement('h2');
@@ -63,6 +103,7 @@ function displayHomeTaskArea() {
                 taskCard.appendChild(listName);
                 tasksArea.appendChild(taskCard);
 
+                //add individual tasks to display
                 for (let k = 0; k < dueToday.length; k++) {
                     const taskLabel = document.createElement('label');
                     taskLabel.className = 'task';
@@ -77,11 +118,32 @@ function displayHomeTaskArea() {
                     const checkmark = document.createElement('span');
                     checkmark.className = 'checkmark';
                     taskLabel.appendChild(checkmark);
+
+                    //check if task is checked/completed
+                    if (dueToday[k].completed === 'true') {
+                        checkbox.checked = true;
+                    }
+                    if (dueToday[k].completed === 'false') {
+                        checkbox.checked = false;
+                    }
+                    taskLabel.addEventListener('input', ()=> {
+                        if (dueToday[k].completed === 'true') {
+                            dueToday[k].completed = 'false';
+                        }
+                        else if (dueToday[k].completed === 'false') {
+                            dueToday[k].completed = 'true';
+                        }
+                    })
                 }
             }
         }
     }
 }
-displayHomeTaskArea();
 
-export {displayHomeTaskArea};
+//Display homepage if clicked again
+todayBtn.addEventListener('click', displayHomeTaskArea);
+
+//Display all tasks
+allTasksBtn.addEventListener('click', displayAllTasks);
+
+export {displayHomeTaskArea, allTasksBtn, todayBtn, rightContainer};

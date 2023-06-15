@@ -7,7 +7,8 @@ let calendarDate = yyyy + '-' + mm + '-' + dd;
 let hourOfDay = today.getHours();
 let weekday = today.getDay();
 
+//store lists
 let lists = [];
 const dim = document.querySelector('.dim');
 
-export {today, dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists, dim};
+export {today, dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists, dim };

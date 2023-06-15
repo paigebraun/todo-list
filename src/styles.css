@@ -210,6 +210,13 @@ button {
     width: fit-content;
 }
 
+.noTasks {
+    font-family: 'Inter';
+    font-size: 1.1em;
+    color: #e4e4e4;
+    margin: -8px 0px;
+}
+
 .task input {
     position: absolute;
     opacity: 0;
@@ -219,7 +226,8 @@ button {
 }
 
 .checkmark {
-    border: 2px solid #4290D9;
+    --checkedColor: #4290D9;
+    border: 2px solid var(--checkedColor);
     position: absolute;
     border-radius: 5px;
     top:0;
@@ -233,7 +241,7 @@ button {
 }
 
 .task input:checked ~ .checkmark {
-    background-color: #4290D9;
+    background-color: var(--checkedColor);
 }
 
 .checkmark:after {

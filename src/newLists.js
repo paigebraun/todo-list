@@ -1,5 +1,6 @@
 import { lists, dim } from './globals';
 import { addListDropdown, dropDownHelper } from './newTasks';
+import { displayHomeTaskArea } from '.';
 
 //list object constructor
 class ListObj {
