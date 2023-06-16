@@ -1,9 +1,12 @@
 import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer } from ".";
+import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
 
 function displayAllTasks() {
     todayBtn.classList.remove('selected');
     allTasksBtn.classList.add('selected');
+    for (let i = 0; i < listBtns.children.length; i++) {
+        listBtns.children[i].firstChild.classList.remove('selected');
+    }
 
     //clear the right side
     while (rightContainer.firstChild) {
@@ -33,7 +36,7 @@ function displayAllTasks() {
 
         taskCard.appendChild(listName);
         tasksArea.appendChild(taskCard);
-        
+
         if (lists[i].tasks.length === 0) {
             const noTasks = document.createElement('p');
             noTasks.className = 'noTasks';

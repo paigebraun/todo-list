@@ -60,7 +60,21 @@ body {
     padding: 10px 17px;
 }
 
+.today:hover,
+.allTasks:hover {
+    background-color:#d7d7d7
+}
+
+.tasksOnly {
+    margin-top: 3vh;
+}
+
 .todo-list > .selected {
+    background-color: #4290D9;
+    color: white;
+}
+
+.listButton > .selected {
     background-color: #4290D9;
     color: white;
 }
@@ -113,6 +127,10 @@ button {
 #addBtn > button {
     font-family: 'Inter';
     color: #BCBCBC;
+}
+
+#addBtn>button:hover {
+    color:#959595;
 }
 
 .plus {
@@ -276,6 +294,11 @@ button {
     box-shadow: 0 0 20px #e4e4e4;
     display: flex;
     justify-content: center;
+    transition: all .2s ease-in-out;
+}
+
+#addTaskBtn:hover {
+    transform: scale(1.1);
 }
 
 .plusTask {

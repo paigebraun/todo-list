@@ -2,6 +2,7 @@ import { lists, dim } from './globals';
 import { listBtns } from './newLists';
 import { displayHomeTaskArea } from '.';
 import { displayAllTasks } from './allTasks';
+import { displayListView } from './listView';
 
 //add new task
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -62,6 +63,15 @@ function createTask(taskName, list, dueDate, completed) {
     }
     if (selected.classList[0] === 'allTasks') {
         displayAllTasks();
+    }
+    if (selected.classList[0] === 'selected') {
+        //we're on an individual list, figure out which one
+        const listButton = document.querySelectorAll('.listButton');
+        for (let i=0; i < listButton.length; i++) {
+            if (listButton[i].firstChild.classList[0] === 'selected') {
+                displayListView(listButton[i].firstChild);
+            }
+        }
     }
     //clear inputs and hide new task
     hideNewTask();

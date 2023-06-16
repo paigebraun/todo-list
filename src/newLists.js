@@ -1,6 +1,6 @@
 import { lists, dim } from './globals';
 import { addListDropdown, dropDownHelper } from './newTasks';
-import { displayHomeTaskArea } from '.';
+import { displayAllTasks } from './allTasks';
 
 //list object constructor
 class ListObj {
@@ -82,6 +82,14 @@ newListAdd.addEventListener('click', function() {
     displayList(lists[lists.length - 1]);
     addListDropdown();
     dropDownHelper();
+    //update display - need to figure out what display we're on
+    const selected = document.querySelector('.selected');
+    if (selected.classList[0] === 'today') {
+        displayHomeTaskArea();
+    }
+    if (selected.classList[0] === 'allTasks') {
+        displayAllTasks();
+    }
 })
 
 export {listBtns};

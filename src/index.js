@@ -2,6 +2,7 @@ import './styles.css';
 import { dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists} from './globals';
 import { createTask, sBtn_text } from './newTasks';
 import { displayAllTasks } from './allTasks';
+import { displayListView } from './listView';
 
 //display todays info on homepage
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -9,6 +10,7 @@ const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
 const rightContainer = document.querySelector('.right');
 const allTasksBtn = document.querySelector('.allTasks');
 const todayBtn = document.querySelector('.today');
+const listBtns = document.querySelector('.listBtns');
 
 const newTaskAdd = document.querySelector('.newTaskAdd');
 newTaskAdd.addEventListener('click', function() {
@@ -27,6 +29,10 @@ createTask('Research project', 'Work', calendarDate);
 function displayHomeTaskArea() {
     allTasksBtn.classList.remove('selected');
     todayBtn.classList.add('selected');
+    for (let i = 0; i < listBtns.children.length; i++) {
+        listBtns.children[i].firstChild.classList.remove('selected');
+    }
+    
     //clear the right container
     while (rightContainer.firstChild) {
         rightContainer.removeChild(rightContainer.lastChild);
@@ -146,4 +152,9 @@ todayBtn.addEventListener('click', displayHomeTaskArea);
 //Display all tasks
 allTasksBtn.addEventListener('click', displayAllTasks);
 
-export {displayHomeTaskArea, allTasksBtn, todayBtn, rightContainer};
+//Display list view
+listBtns.addEventListener('click', function(e) {
+    displayListView(e.target);
+});
+
+export {displayHomeTaskArea, allTasksBtn, todayBtn, rightContainer, listBtns};
