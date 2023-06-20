@@ -1,5 +1,5 @@
 import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
+import { allTasksBtn, todayBtn, rightContainer, listBtns, iconsClicked } from ".";
 
 function displayAllTasks() {
     todayBtn.classList.remove('selected');
@@ -40,27 +40,43 @@ function displayAllTasks() {
         if (lists[i].tasks.length === 0) {
             const noTasks = document.createElement('p');
             noTasks.className = 'noTasks';
-            noTasks.innerText = 'No Tasks Here.'
+            noTasks.innerText = 'No Tasks Here'
             taskCard.appendChild(noTasks);
         }
         else {
             //add individual tasks under the correct list name
             for (let k = 0; k < lists[i].tasks.length; k++) {
     
-                const taskLabel = document.createElement('label');
+                const taskLabel = document.createElement('div');
                 taskLabel.className = 'task';
                 taskCard.appendChild(taskLabel);
+                
+                const taskContainer = document.createElement('label');
+                taskContainer.className = 'taskContainer';
+                taskLabel.appendChild(taskContainer);
+                
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.className = 'strike';
-                taskLabel.appendChild(checkbox);
+                checkbox.name = 'checkbox';
+                taskContainer.appendChild(checkbox);
                 const taskSpan = document.createElement('span');
                 taskSpan.innerText = lists[i].tasks[k].taskName;
-                taskLabel.appendChild(taskSpan);
+                taskContainer.appendChild(taskSpan);
                 const checkmark = document.createElement('span');
                 checkmark.className = 'checkmark';
                 checkmark.style.setProperty('--checkedColor', lists[i].color);
-                taskLabel.appendChild(checkmark);
+                taskContainer.appendChild(checkmark);
+
+                const iconContainer = document.createElement('div');
+                iconContainer.className = 'iconContainer';
+                const infoIcon = document.createElement('i');
+                infoIcon.className = 'bx bx-info-circle';
+                const deleteIcon = document.createElement('i');
+                deleteIcon.className = 'bx bx-trash';
+                iconContainer.appendChild(infoIcon);
+                iconContainer.appendChild(deleteIcon);
+                taskLabel.appendChild(iconContainer);
 
                 //check if task is checked/completed
                 if (lists[i].tasks[k].completed === 'true') {
@@ -77,6 +93,8 @@ function displayAllTasks() {
                         lists[i].tasks[k].completed = 'true';
                     }
                 })
+                //add event listener to info & delete icons
+                iconsClicked(lists[i].tasks[k]);
             }
         }
     }

@@ -1,8 +1,6 @@
 import { lists, dim } from './globals';
 import { listBtns } from './newLists';
-import { displayHomeTaskArea } from '.';
-import { displayAllTasks } from './allTasks';
-import { displayListView } from './listView';
+import { updateDisplay } from '.';
 
 //add new task
 const addTaskBtn = document.getElementById('addTaskBtn');
@@ -20,7 +18,7 @@ newTaskCancel.addEventListener('click', hideNewTask);
 
 //task object constructor
 class Task {
-    constructor(taskName, list, dueDate, completed) {
+    constructor(taskName, list, dueDate) {
         this.taskName = taskName;
         this.list = list;
         this.dueDate = dueDate;
@@ -40,7 +38,7 @@ function hideNewTask() {
     dim.style.display = 'none';
 }
 
-function createTask(taskName, list, dueDate, completed) {
+function createTask(taskName, list, dueDate) {
     let newTask = new Task(taskName, list, dueDate);
     //add new task to appropriate list
     for (let i = 0; i < lists.length; i++) {
@@ -55,31 +53,16 @@ function createTask(taskName, list, dueDate, completed) {
             }
         }
     }
+    //update display to show new task
+    updateDisplay();
 
-    //update display - need to figure out what display we're on
-    const selected = document.querySelector('.selected');
-    if (selected.classList[0] === 'today') {
-        displayHomeTaskArea();
-    }
-    if (selected.classList[0] === 'allTasks') {
-        displayAllTasks();
-    }
-    if (selected.classList[0] === 'selected') {
-        //we're on an individual list, figure out which one
-        const listButton = document.querySelectorAll('.listButton');
-        for (let i=0; i < listButton.length; i++) {
-            if (listButton[i].firstChild.classList[0] === 'selected') {
-                displayListView(listButton[i].firstChild);
-            }
-        }
-    }
     //clear inputs and hide new task
     hideNewTask();
 }
 
 //add list to dropdown menu option on new task popup
-const optionsList = document.querySelector('.options');
 function addListDropdown() {
+    const optionsList = document.querySelector('.options');
     while (optionsList.firstChild){
         optionsList.removeChild(optionsList.firstChild);
     }
@@ -119,6 +102,6 @@ function dropDownHelper() {
     });
 }
 
-dropDownHelper();
+dropDownHelper();   
 
 export {createTask, sBtn_text, addListDropdown, dropDownHelper };

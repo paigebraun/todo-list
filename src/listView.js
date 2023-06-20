@@ -1,5 +1,5 @@
 import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
+import { allTasksBtn, todayBtn, rightContainer, listBtns, iconsClicked } from ".";
 
 function displayListView(e) {
     //if click on task count circle or in between buttons, do nothing
@@ -48,20 +48,36 @@ function displayListView(e) {
             else {
                 //add individual tasks under the correct list name
                 for (let k = 0; k < lists[j].tasks.length; k++) {
-                    const taskLabel = document.createElement('label');
+                    const taskLabel = document.createElement('div');
                     taskLabel.className = 'task';
                     taskCard.appendChild(taskLabel);
+
+                    const taskContainer = document.createElement('label');
+                    taskContainer.className = 'taskContainer';
+                    taskLabel.appendChild(taskContainer);
+
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
                     checkbox.className = 'strike';
-                    taskLabel.appendChild(checkbox);
+                    checkbox.name = 'checkbox';
+                    taskContainer.appendChild(checkbox);
                     const taskSpan = document.createElement('span');
                     taskSpan.innerText = lists[j].tasks[k].taskName;
-                    taskLabel.appendChild(taskSpan);
+                    taskContainer.appendChild(taskSpan);
                     const checkmark = document.createElement('span');
                     checkmark.className = 'checkmark';
                     checkmark.style.setProperty('--checkedColor', lists[j].color);
-                    taskLabel.appendChild(checkmark);
+                    taskContainer.appendChild(checkmark);
+
+                    const iconContainer = document.createElement('div');
+                    iconContainer.className = 'iconContainer';
+                    const infoIcon = document.createElement('i');
+                    infoIcon.className = 'bx bx-info-circle';
+                    const deleteIcon = document.createElement('i');
+                    deleteIcon.className = 'bx bx-trash';
+                    iconContainer.appendChild(infoIcon);
+                    iconContainer.appendChild(deleteIcon);
+                    taskLabel.appendChild(iconContainer);
 
                     //check if task is checked/completed
                     if (lists[j].tasks[k].completed === 'true') {
@@ -78,6 +94,9 @@ function displayListView(e) {
                             lists[j].tasks[k].completed = 'true';
                         }
                     })
+                    
+                    //add event listener to icons
+                    iconsClicked(lists[j].tasks[k]);
                 }
             }
             

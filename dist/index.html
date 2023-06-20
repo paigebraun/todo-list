@@ -55,7 +55,7 @@
             <h2>New Task</h2>
             <input type="text" id="newTaskName">
             <div class="listSelectContainer">
-                <label for"select-menu>List:</label>
+                <div>List:</div>
                 <div class="select-menu">
                     <div class="select-btn">
                         <span class="sBtn-text">Personal</span>
@@ -74,7 +74,29 @@
                     <btn class="newTaskAdd">Add</btn>
                 </div>                
             </div>
-
+        </div>
+        <div id="editTask">
+            <input type="text" id="editTaskName">
+            <div class="listSelectContainer">
+                <div>List:</div>
+                <div class="edit-select-menu">
+                    <div class="edit-select-btn">
+                        <span class="edit-sBtn-text">Personal</span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="edit-options"></ul>
+                </div>
+            </div>
+            <div class="editTaskBottom">
+                <div class="dateSelectContainer">
+                    <label for="editDueDate">Due Date:</label>
+                    <input type="date" id="editDueDate">
+                </div>
+                <div class="addCancel">
+                    <btn class="editTaskCancel">Cancel</btn>
+                    <btn class="editTaskAdd">Done</btn>
+                </div>                
+            </div>
         </div>
         <div id="newList">
             <h2>New List</h2>
@@ -83,7 +105,7 @@
                 <input type="text" id="newListName">
             </div>
             <div class="newListBottom">
-                <label class="colorLabel" for="colors">Color:</label>
+                <div class="colorLabel">Color:</div>
                 <div id="colors">
                     <input type="radio" name="color" id="green" value="0" checked="checked">
                     <label for="green"><span class="green colorPick"><span class="colorSelected"></span></label>

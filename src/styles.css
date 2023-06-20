@@ -114,7 +114,7 @@ button {
     border-radius: 20px;
     color: rgba(0, 0, 0, 0.5);
     font-size: .9em;
-    padding: 4px 10px;
+    padding: 4px 11px;
 }
 
 #addBtn {
@@ -208,7 +208,6 @@ button {
 .taskCard {
     display: flex;
     flex-direction: column;
-    gap: 6px;
 }
 
 .listName {
@@ -220,12 +219,36 @@ button {
 .task {
     position: relative;
     font-size: 1.1em;
-    padding-top: 2px;
     padding-left: 36px;
     margin-bottom: 1px;
     cursor: pointer;
     font-family: 'Inter';
-    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.iconContainer {
+    display: none;
+    z-index: 1;
+}
+
+.iconContainer > i {
+    font-size: 1.2em;
+}
+
+.iconContainer > i:hover {
+    color:black;
+}
+
+.task:hover {
+    background-color: #f8f8f8;
+}
+
+.task:hover > .iconContainer {
+    display: flex;
+    gap: 5px;
+    color: #BCBCBC;
 }
 
 .noTasks {
@@ -252,6 +275,7 @@ button {
     left: 0;
     width: 20px;
     height: 20px;
+    margin-top: 3px;
 }
 
 .strike:checked + span {
@@ -310,7 +334,8 @@ button {
 /* NEW TASK POPUP */
 
 #newTask,
-#newList {
+#newList,
+#editTask {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -335,7 +360,8 @@ button {
 }
 
 #newTaskName,
-#newListName {
+#newListName,
+#editTaskName {
     height: 17px;
     border: 2px solid lightgrey;
     border-radius: 5px;
@@ -358,7 +384,7 @@ button {
     margin-top: 15px;
 }
 
-.listSelectContainer > label,
+.listSelectContainer > div,
 .dateSelectContainer > label {
     font-family: 'Inter';
 }
@@ -372,10 +398,12 @@ input[type='date'] {
     font-size: inherit;
 }
 
-.select-menu{
+.select-menu,
+.edit-select-menu {
     width: 150px;
 }
-.select-menu .select-btn{
+.select-menu .select-btn,
+.edit-select-menu .edit-select-btn {
     display: flex;
     height: 17px;
     background: #fff;
@@ -387,14 +415,18 @@ input[type='date'] {
     justify-content: space-between;
     border: 2px solid lightgrey;
 }
-.select-btn i{
+.select-btn i,
+.edit-select-btn i {
     font-size: 25px;
     transition: 0.3s;
 }
-.select-menu.active .select-btn i{
+
+.select-menu.active .select-btn i,
+.edit-select-menu.active .edit-select-btn i{
     transform: rotate(-180deg);
 }
-.select-menu .options{
+.select-menu .options,
+.edit-select-menu .edit-options{
     font-family: 'Inter';
     position: absolute;
     padding: 2px;
@@ -405,10 +437,14 @@ input[type='date'] {
     display: none;
     width: inherit;
 }
-.select-menu.active .options{
+
+.select-menu.active .options,
+.edit-select-menu.active .edit-options {
     display: block;
 }
-.options .option{
+
+.options .option,
+.edit-options .option{
     display: flex;
     height: 12px;
     cursor: pointer;
@@ -419,7 +455,8 @@ input[type='date'] {
     background: #fff;
 }
 
-.options .option:hover{
+.options .option:hover,
+.edit-options .option:hover{
     background: #F2F2F2;
 }
 .option i{
@@ -431,7 +468,8 @@ input[type='date'] {
     color: #333;
 }
 
-.newTaskBottom {
+.newTaskBottom,
+.editTaskBottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -449,7 +487,9 @@ input[type='date'] {
 .newTaskAdd,
 .newTaskCancel,
 .newListAdd,
-.newListCancel {
+.newListCancel,
+.editTaskAdd,
+.editTaskCancel {
     padding: 6px 10px;
     border-radius: 7px;
     background-color: #F2F2F2;
@@ -458,7 +498,9 @@ input[type='date'] {
 .newTaskAdd:hover,
 .newTaskCancel:hover,
 .newListAdd:hover,
-.newListCancel:hover {
+.newListCancel:hover,
+.editTaskAdd:hover,
+.editTaskCancel:hover {
     background-color: #EAEAEA;
 }
 
@@ -558,6 +600,10 @@ label span {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.task label span:not(.checkmark) {
+    padding: 4px 0px;
 }
 
 .colorSelected {
