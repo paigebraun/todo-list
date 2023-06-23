@@ -34,6 +34,7 @@ body {
     margin: 2vh;
     height: 96vh;
     min-width: 238px;
+    overflow-y: auto;
 }
 
 .todo-list,
@@ -67,6 +68,7 @@ body {
 
 .tasksOnly {
     margin-top: 3vh;
+    padding: 5px 0px;
 }
 
 .todo-list > .selected {
@@ -90,6 +92,7 @@ button {
     flex-direction: column;
     text-align: center;
     gap: 14px;
+    padding-bottom: 20px;
 }
 
 .listButton {
@@ -149,6 +152,8 @@ button {
 
 .right {
     margin-left: 10px;
+    overflow-y: auto;
+    max-height: 98vh;
 }
 
 .greeting {
@@ -200,7 +205,7 @@ button {
     margin: 0px;
 }
 
-.taskArea {
+.tasksArea {
     display: flex;
     flex-direction: column;
 }
@@ -630,4 +635,127 @@ label span {
 
 input[type="radio"]:checked + label > span > .colorSelected {
     display: block;
+}
+
+/* Mobile and tablet sizing */
+
+@media screen and (max-width: 675px) {
+    #container {
+        flex-direction: column;
+    }
+
+    .left {
+        display: flex;
+        height: auto;
+        width: auto;
+        flex-direction: column;
+        margin: 1vh;
+    }
+
+    .listContainer > h3 {
+        display: none;
+    }
+
+    .todo-list > h3 {
+        grid-area: h3;
+    }
+
+    .today {
+        grid-area: today;
+    }
+
+    .allTasks {
+        grid-area: allTasks;
+    }
+
+    .todo-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1.5fr 1fr;
+        grid-template-areas: "h3 . " "today allTasks";
+        margin: 0px 5vw;
+    }
+
+    .lists {
+        margin: 0px 5vw;
+        margin-bottom: 20px;
+    }
+
+    .listBtns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    #addBtn {
+        font-size: 1.2em;
+        position: absolute;
+        right: 10vw;
+        top: 2vh;
+    }
+
+    .plus {
+        padding: 1px 8px 3px 8px;
+    }
+
+    .greetingTop > h1 {
+        margin-top: 4px;
+    }
+
+    .greetingBottom > h2 {
+        margin: -5px 0px;
+    }
+
+    .right {
+        margin: 0px 24px 44px 24px;
+    }
+
+    .header {
+        width: 82vw;
+        margin-top: 3vh;
+    }
+
+    #addTaskBtn {
+        position: fixed;
+        bottom: 2vh;
+    }
+
+    #newList,
+    #newTask,
+    #editTask {
+        min-width: 295px;
+    }
+
+    .colorLabel {
+        grid-area: colorLabel;
+    }
+
+    #colors {
+        grid-area: colors;
+        gap: 3px;
+    }
+
+    .newListBottom > .addCancel {
+        grid-area: addCancel;
+        margin-left: 83px;
+    }
+
+    .newListBottom {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "colorLabel colors" ". addCancel";
+
+    }
+
+    .newTaskBottom,
+    .editTaskBottom {
+        align-items: start;
+        justify-content: left;
+        flex-direction: column;
+    }
+
+    .newTaskBottom > .addCancel
+    .editTaskBottom > .addCancel {
+        margin-left: 155px;
+    }
 }
