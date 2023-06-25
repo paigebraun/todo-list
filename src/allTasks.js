@@ -1,5 +1,6 @@
 import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer, listBtns, iconsClicked } from ".";
+import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
+import { iconsClicked } from "./editTask";
 
 function displayAllTasks() {
     todayBtn.classList.remove('selected');
@@ -94,7 +95,7 @@ function displayAllTasks() {
                     }
                 })
                 //add event listener to info & delete icons
-                iconsClicked(lists[i].tasks[k]);
+                iconsClicked(iconContainer, lists[i].tasks[k]);
             }
         }
     }

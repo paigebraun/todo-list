@@ -9,6 +9,7 @@ let weekday = today.getDay();
 
 //store lists
 let lists = [];
+let tasksArray = [];
 const dim = document.querySelector('.dim');
 
-export {today, dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists, dim };
+export {today, dd, mm, yyyy, calendarDate, hourOfDay, weekday, lists, dim, tasksArray };

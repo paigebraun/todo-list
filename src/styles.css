@@ -205,6 +205,18 @@ button {
     margin: 0px;
 }
 
+.listIcons {
+    display: flex;
+    gap: 5px;
+    font-size: 1.5em;
+    color: #BCBCBC;
+}
+
+.listIcons > .bx-info-circle:hover,
+.listIcons > .bx-trash:hover {
+    color: var(--checkedColor);
+}
+
 .tasksArea {
     display: flex;
     flex-direction: column;

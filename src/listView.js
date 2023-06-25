@@ -1,5 +1,6 @@
 import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer, listBtns, iconsClicked } from ".";
+import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
+import { iconsClicked } from "./editTask";
 
 function displayListView(e) {
     //if click on task count circle or in between buttons, do nothing
@@ -26,6 +27,16 @@ function displayListView(e) {
     listHeader.innerText = e.innerText;
     listHeader.style.color = e.nextElementSibling.style.backgroundColor;
     header.appendChild(listHeader);
+    const listIcons = document.createElement('div');
+    const listInfo = document.createElement('i');
+    const listDelete = document.createElement('i');
+    listInfo.classList = 'bx bx-info-circle';
+    listDelete.classList = 'bx bx-trash';
+    listIcons.appendChild(listInfo);
+    listIcons.appendChild(listDelete);
+    listIcons.className = 'listIcons';
+    listIcons.style.setProperty('--checkedColor', e.nextElementSibling.style.backgroundColor);
+    header.appendChild(listIcons);
 
     const tasksArea = document.createElement('div');
     tasksArea.classList.add('tasksArea')
@@ -96,7 +107,7 @@ function displayListView(e) {
                     })
                     
                     //add event listener to icons
-                    iconsClicked(lists[j].tasks[k]);
+                    iconsClicked(iconContainer, lists[j].tasks[k]);
                 }
             }
             

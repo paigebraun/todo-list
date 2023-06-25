@@ -1,14 +1,16 @@
 import { lists, dim } from './globals';
 import { addListDropdown, dropDownHelper } from './newTasks';
 import { displayAllTasks } from './allTasks';
-import { addListDropdownEdit } from '.';
+import { displayHomeTaskArea } from '.';
+import { addListDropdownEdit } from './editTask'
 
 //list object constructor
 class ListObj {
-    constructor(title, color, tasks) {
+    constructor(title, color, tasks, place) {
         this.title = title;
         this.color = color;
         this.tasks = tasks;
+        this.place = place;
     }
 }
 
@@ -20,7 +22,7 @@ createList('Grocery', '#F173BF', []);
 
 //create new list objects
 function createList(title, color, tasks) {
-    let newList = new ListObj(title, color, tasks);
+    let newList = new ListObj(title, color, tasks, lists.length);
     lists.push(newList);
 }
 

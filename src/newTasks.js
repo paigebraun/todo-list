@@ -1,6 +1,6 @@
 import { lists, dim } from './globals';
 import { listBtns } from './newLists';
-import { updateDisplay } from '.';
+import { updateDisplay } from './editTask';
 
 //add new task
 const addTaskBtn = document.getElementById('addTaskBtn');
