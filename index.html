@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--===== Boxicons CSS =====-->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>To Do</title>
+</head>
+<body>
+    <div class="dim"></div>
+    <div id="container">
+        <div class="left">
+            <div class="todo-list">
+                <h3>To Do</h3>
+                <button type="button" class="today selected">Today</button>
+                <button type="button" class="allTasks">All Tasks</button>
+            </div>
+            <div class="lists">
+                <div class="listContainer">
+                    <h3>Lists</h3>
+                    <div id="addBtn">
+                        <button class="plus">+</button>
+                        <button>Add List</button>
+                    </div>
+                </div>
+                <div class="listBtns">
+                </div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="greeting">
+                <div class="greetingTop">
+                    <h1>Good</h1>
+                    <h1 id="timeOfDay">Morning,</h1>
+                </div>
+                <div class="greetingBottom">
+                    <h2>Here's a look at your</h2>
+                    <h2 id="dayOfWeek">Monday</h2>
+                </div>
+            </div>
+            <div class="header">
+                <h2>Today</h2>
+                <p id="todaysDate">5/15/2023</p>
+            </div>
+            <div class="tasksArea">
+            </div>
+        </div>
+        <div id="addTaskBtn">
+            <button class="plusTask">+</button>
+        </div>
+        <div id="newTask">
+            <h2>New Task</h2>
+            <input type="text" id="newTaskName">
+            <div class="listSelectContainer">
+                <div>List:</div>
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span class="sBtn-text"></span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="options"></ul>
+                </div>
+            </div>
+            <div class="newTaskBottom">
+                <div class="dateSelectContainer">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate">
+                </div>
+                <div class="addCancel">
+                    <btn class="newTaskCancel">Cancel</btn>
+                    <btn class="newTaskAdd">Add</btn>
+                </div>                
+            </div>
+        </div>
+        <div id="editTask">
+            <input type="text" id="editTaskName">
+            <div class="listSelectContainer">
+                <div>List:</div>
+                <div class="edit-select-menu">
+                    <div class="edit-select-btn">
+                        <span class="edit-sBtn-text"></span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="edit-options"></ul>
+                </div>
+            </div>
+            <div class="editTaskBottom">
+                <div class="dateSelectContainer">
+                    <label for="editDueDate">Due Date:</label>
+                    <input type="date" id="editDueDate">
+                </div>
+                <div class="addCancel">
+                    <btn class="editTaskCancel">Cancel</btn>
+                    <btn class="editTaskAdd">Done</btn>
+                </div>                
+            </div>
+        </div>
+        <div id="newList">
+            <h2>New List</h2>
+            <div class="newListNameInput">
+                <label for="newListName">Name:</label>
+                <input type="text" id="newListName">
+            </div>
+            <div class="newListBottom">
+                <div class="colorLabel">Color:</div>
+                <div id="colors">
+                    <input type="radio" name="color" id="green" value="0" checked="checked">
+                    <label for="green"><span class="green colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="color" id="orange" value="1">
+                    <label for="orange"><span class="orange colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="pink" value="2">
+                    <label for="pink"><span class="pink colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="yellow" value="3">
+                    <label for="yellow"><span class="yellow colorPick"><span class="colorSelected"></span></label> 
+                    <div></div>
+                    <input type="radio" name="color" id="red" value="4">
+                    <label for="red"><span class="red colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="teal" value="5">
+                    <label for="teal"><span class="teal colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="color" id="purple" value="6">
+                    <label for="purple"><span class="purple colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="color" id="black" value="7">
+                    <label for="black"><span class="black colorPick"><span class="colorSelected"></span></label> 
+    
+                </div>      
+                <div class="addCancel">
+                    <btn class="newListCancel">Cancel</btn>
+                    <btn class="newListAdd">Add</btn>
+                </div>   
+            </div>
+        </div>
+        <div id="editList">
+            <div class="editListNameInput">
+                <label for="editListName">Name:</label>
+                <input type="text" id="editListName">
+            </div>
+            <div class="editListBottom">
+                <div class="colorLabel">Color:</div>
+                <div id="editColors">
+                    <input type="radio" name="editColor" id="editGreen" value="0" checked="checked">
+                    <label for="editGreen"><span class="green colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="editColor" id="editOrange" value="1">
+                    <label for="editOrange"><span class="orange colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="editColor" id="editPink" value="2">
+                    <label for="editPink"><span class="pink colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="editColor" id="editYellow" value="3">
+                    <label for="editYellow"><span class="yellow colorPick"><span class="colorSelected"></span></label> 
+                    <div></div>
+                    <input type="radio" name="editColor" id="editRed" value="4">
+                    <label for="editRed"><span class="red colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="editColor" id="editTeal" value="5">
+                    <label for="editTeal"><span class="teal colorPick"><span class="colorSelected"></span></label>
+
+                    <input type="radio" name="editColor" id="editPurple" value="6">
+                    <label for="editPurple"><span class="purple colorPick"><span class="colorSelected"></span></label> 
+
+                    <input type="radio" name="editColor" id="editBlack" value="7">
+                    <label for="editBlack"><span class="black colorPick"><span class="colorSelected"></span></label> 
+    
+                </div>      
+                <div class="addCancel">
+                    <btn class="editListCancel">Cancel</btn>
+                    <btn class="editListAdd">Done</btn>
+                </div>   
+            </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
