@@ -32,7 +32,7 @@ const dueDate = document.getElementById('dueDate');
 
 function hideNewTask() {
     newTaskName.value = '';
-    sBtn_text.innerText = options[0].innerText.replace(/\n/g, '');
+    sBtn_text.innerText = lists[0].title;
     dueDate.value = '';
     newTaskPopup.style.display = 'none';
     dim.style.display = 'none';

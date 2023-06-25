@@ -1,20 +1,79 @@
-import { lists } from "./globals";
-import { allTasksBtn, todayBtn, rightContainer, listBtns } from ".";
-import { iconsClicked } from "./editTask";
-import { listIconsClicked } from "./editList";
+import { dim, lists } from './globals';
+import { listOfColors } from './newLists';
+import { displayHomeTaskArea, rightContainer } from '.';
+import { iconsClicked } from './editTask';
+import { addListDropdown, dropDownHelper, sBtn_text } from './newTasks';
 
-function displayListView(e) {
-    //if click on task count circle or in between buttons, do nothing
-    if ((e.className === 'taskCount') || (e.className === 'listBtns')) {
-        return;
-    }
-    todayBtn.classList.remove('selected');
-    allTasksBtn.classList.remove('selected');
-    for (let i = 0; i < listBtns.children.length; i++) {
-        listBtns.children[i].firstChild.classList.remove('selected');
-    }
-    e.classList.add('selected');
+const editList = document.getElementById('editList');
+const editListName = document.getElementById('editListName');
+const editColor = document.getElementsByName('editColor');
+const editListAdd = document.querySelector('.editListAdd');
+const editListCancel = document.querySelector('.editListCancel');
 
+function listIconsClicked(listIcons, currentList) {
+    listIcons.addEventListener('click', (e)=> {
+        if (e.target.classList[1] === 'bx-info-circle') {
+            //display info pop up
+            editList.style.display = 'flex';
+            dim.style.display = 'block';
+            editListName.value = currentList.title;
+            //remove checked color
+            for (let i = 0; i < editColor.length; i++) {
+                editColor[i].checked = false;
+            }
+            //make checked color same as list color
+            let colorIndex = listOfColors.indexOf(currentList.color);
+            editColor[colorIndex].checked = true;
+            editListAdd.addEventListener('click', editListAddHandler);
+        }
+        if (e.target.classList[1] === 'bx-trash') {
+            //delete the list
+            deleteList(currentList);
+        }
+    })
+
+    //cancel update to list, reset
+    editListCancel.addEventListener('click', ()=> {
+        editListAdd.removeEventListener('click', editListAddHandler);
+        hideEditList();
+    });
+
+    function editListAddHandler() {
+        currentList.title = editListName.value;
+        //find which color is checked
+        let editColorNum = document.querySelector('input[name="editColor"]:checked');
+        let editColorSelected = listOfColors[Number(editColorNum.value)];
+        currentList.color = editColorSelected;
+        let selectedList = document.querySelector('.selected');
+        selectedList.innerText = editListName.value;
+        selectedList.nextElementSibling.style.backgroundColor = editColorSelected;
+        updateListView(currentList);
+        hideEditList();
+        addListDropdown();
+        dropDownHelper();
+        editListAdd.removeEventListener('click', editListAddHandler);
+    }
+}
+
+function hideEditList() {
+    editList.style.display = 'none';
+    dim.style.display = 'none';
+}
+
+function deleteList(currentList) {
+    let removeIndex = lists.indexOf(currentList);
+    lists.splice(removeIndex, 1);
+    //remove from listBtns
+    let selectedList = document.querySelector('.selected');
+    selectedList.parentElement.remove();
+    sBtn_text.innerText = lists[0].title;
+    addListDropdown();
+    dropDownHelper();
+    displayHomeTaskArea();
+    console.log(lists);
+}
+
+function updateListView(currentList) {
     //clear the right side
     while (rightContainer.firstChild) {
         rightContainer.removeChild(rightContainer.lastChild);
@@ -25,8 +84,8 @@ function displayListView(e) {
     header.className = 'header';
     rightContainer.appendChild(header);
     const listHeader = document.createElement('h2');
-    listHeader.innerText = e.innerText;
-    listHeader.style.color = e.nextElementSibling.style.backgroundColor;
+    listHeader.innerText = currentList.title;
+    listHeader.style.color = currentList.color;
     header.appendChild(listHeader);
     const listIcons = document.createElement('div');
     const listInfo = document.createElement('i');
@@ -36,7 +95,7 @@ function displayListView(e) {
     listIcons.appendChild(listInfo);
     listIcons.appendChild(listDelete);
     listIcons.className = 'listIcons';
-    listIcons.style.setProperty('--checkedColor', e.nextElementSibling.style.backgroundColor);
+    listIcons.style.setProperty('--checkedColor', currentList.color);
     header.appendChild(listIcons);
 
     const tasksArea = document.createElement('div');
@@ -50,7 +109,7 @@ function displayListView(e) {
 
     //find the right list
     for (let j = 0; j < lists.length; j++) {
-        if (lists[j].title === e.innerText) {
+        if (lists[j].title === currentList.title) {
             //add event listener to list icons
             listIconsClicked(listIcons, lists[j]);
             if (lists[j].tasks.length === 0) {
@@ -119,4 +178,4 @@ function displayListView(e) {
 
 }
 
-export { displayListView };
+export { listIconsClicked };

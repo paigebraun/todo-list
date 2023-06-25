@@ -91,6 +91,7 @@ function hideEditTask() {
 
 //add list to dropdown menu option on new task popup
 function addListDropdownEdit() {
+    edit_sBtn_text.innerText = lists[0].title;
     const editOptionsList = document.querySelector('.edit-options');
     while (editOptionsList.firstChild) {
         editOptionsList.removeChild(editOptionsList.firstChild);

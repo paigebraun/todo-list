@@ -97,4 +97,4 @@ newListAdd.addEventListener('click', function() {
     }
 })
 
-export {listBtns};
+export { listBtns, listOfColors };

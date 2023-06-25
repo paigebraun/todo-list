@@ -352,7 +352,8 @@ button {
 
 #newTask,
 #newList,
-#editTask {
+#editTask,
+#editList {
     display: none;
     flex-direction: column;
     position: absolute;
@@ -378,7 +379,8 @@ button {
 
 #newTaskName,
 #newListName,
-#editTaskName {
+#editTaskName,
+#editListName {
     height: 17px;
     border: 2px solid lightgrey;
     border-radius: 5px;
@@ -506,7 +508,9 @@ input[type='date'] {
 .newListAdd,
 .newListCancel,
 .editTaskAdd,
-.editTaskCancel {
+.editTaskCancel,
+.editListAdd,
+.editListCancel {
     padding: 6px 10px;
     border-radius: 7px;
     background-color: #F2F2F2;
@@ -517,7 +521,9 @@ input[type='date'] {
 .newListAdd:hover,
 .newListCancel:hover,
 .editTaskAdd:hover,
-.editTaskCancel:hover {
+.editTaskCancel:hover,
+.editListAdd:hover,
+.editListCancel:hover {
     background-color: #EAEAEA;
 }
 
@@ -535,7 +541,8 @@ input[type='date'] {
 
 /* New List Popup */
 
-.newListNameInput {
+.newListNameInput,
+.editListNameInput {
     font-family: 'Inter';
     font-size: 1.2em;
     color: #BCBCBC;
@@ -550,14 +557,16 @@ input[type='date'] {
     color: #BCBCBC;
 }
 
-.newListBottom {
+.newListBottom,
+.editListBottom {
     font-family: 'Inter';
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
 
-#newListName {
+#newListName,
+#editListName {
     width: 100%;
 }
 
@@ -565,35 +574,43 @@ input[type="radio"] {
     display: none;
 }
 
-.green {
+.green,
+.editGreen {
     background-color: #71CD50;
 }
 
-.orange {
+.orange,
+.editOrange {
     background-color: #FB9535;
 }
 
-.pink {
+.pink,
+.editPink {
     background-color: #F173BF;
 }
 
-.yellow {
+.yellow,
+.editYellow {
     background-color: #F6D14B;
 }
 
-.red {
+.red,
+.editRed {
     background-color: #EF543F;
 }
 
-.teal {
+.teal,
+.editTeal {
     background-color: #67C7C1;
 }
 
-.purple {
+.purple,
+.editPurple {
     background-color: #9C69DE;
 }
 
-.black {
+.black,
+.editBlack {
     background-color: #505050;
 }
 
@@ -604,7 +621,15 @@ input[type="radio"] {
 .red,
 .teal,
 .purple,
-.black {
+.black,
+.editGreen,
+.editOrange,
+.editPink,
+.editYellow,
+.editRed,
+.editTeal,
+.editPurple,
+.editBlack {
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -634,7 +659,8 @@ label span {
     position: relative;
 }
 
-#colors {
+#colors,
+#editColors {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -734,7 +760,8 @@ input[type="radio"]:checked + label > span > .colorSelected {
 
     #newList,
     #newTask,
-    #editTask {
+    #editTask,
+    #editList {
         min-width: 295px;
     }
 
@@ -742,17 +769,20 @@ input[type="radio"]:checked + label > span > .colorSelected {
         grid-area: colorLabel;
     }
 
-    #colors {
+    #colors,
+    #editColors {
         grid-area: colors;
         gap: 3px;
     }
 
-    .newListBottom > .addCancel {
+    .newListBottom > .addCancel,
+    .editListBottom > .addCancel {
         grid-area: addCancel;
         margin-left: 83px;
     }
 
-    .newListBottom {
+    .newListBottom,
+    .editListBottom {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-areas: "colorLabel colors" ". addCancel";
