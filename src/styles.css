@@ -106,7 +106,7 @@ button {
     background-color: white;
     padding:14px;
     min-width: -webkit-fill-available;
-    min-width: -moz-fill-available;
+    min-width: -moz-available;
     min-width: fill-available;
     filter: drop-shadow(.5px .5px 2px rgba(0, 0, 0, 0.05));
 }
